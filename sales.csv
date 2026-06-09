@@ -1,0 +1,6 @@
+id,product,amount,status
+1,Laptop,75000,completed
+2,Phone,25000,pending
+3,Tablet,40000,completed
+4,Monitor,18000,failed
+5,Keyboard,3000,completed

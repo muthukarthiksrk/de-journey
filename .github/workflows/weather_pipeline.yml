@@ -1,0 +1,35 @@
+name: Weather Pipeline
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install requests pandas
+
+      - name: Run weather pipeline
+        env:
+          API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+        run: python day02.py
+
+      - name: Commit updated data
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add India_Weather_Major_Cities.csv
+          git diff --staged --quiet || git commit -m "Auto: weather data update $(date '+%Y-%m-%d %H:%M')"
+          git push
