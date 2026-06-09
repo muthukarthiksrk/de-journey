@@ -5,6 +5,9 @@ on:
     - cron: '0 * * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   run-pipeline:
     runs-on: ubuntu-latest
@@ -23,7 +26,7 @@ jobs:
 
       - name: Run weather pipeline
         env:
-          API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
         run: python day02.py
 
       - name: Commit updated data
