@@ -28,13 +28,28 @@ def extract(city: str, api_key: str) -> dict:
 
 def transform(data: dict) -> dict:
     try:
+        feels_like = data["main"]["feels_like"]
+
+        # Categorise heat index
+        if feels_like < 27:
+            heat_index = "Comfortable"
+        elif feels_like < 32:
+            heat_index = "Warm"
+        elif feels_like < 38:
+            heat_index = "Hot"
+        elif feels_like < 45:
+            heat_index = "Very Hot"
+        else:
+            heat_index = "Dangerous"
+
         return {
             "city"          : data["name"],
             "temperature_c" : data["main"]["temp"],
-            "feels_like_c"  : data["main"]["feels_like"],
+            "feels_like_c"  : feels_like,
             "humidity_pct"  : data["main"]["humidity"],
             "weather"       : data["weather"][0]["description"],
             "wind_speed"    : data["wind"]["speed"],
+            "heat_index"    : heat_index,
             "extracted_at"  : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
     except KeyError as e:
