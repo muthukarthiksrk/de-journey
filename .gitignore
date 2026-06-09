@@ -1,10 +1,37 @@
-# Secret keys - never commit these
+# Secrets - never commit
 .env
+*.key
+*.pem
+config/secrets.yml
 
-# Python cache
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
 
-# Log files
+# Logs
 *.log
+logs/
 
+# Data files - use cloud storage instead
+*.csv
+*.parquet
+*.json
+!sample_data/*.csv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
