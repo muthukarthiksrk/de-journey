@@ -19,7 +19,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install requests pandas
+        run: pip install requests pandas python-dotenv
 
       - name: Run weather pipeline
         env:
