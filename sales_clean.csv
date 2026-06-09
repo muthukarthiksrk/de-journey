@@ -1,0 +1,4 @@
+id,product,amount,status,tax,total
+1,Laptop,75000,completed,13500.0,88500.0
+3,Tablet,40000,completed,7200.0,47200.0
+5,Keyboard,3000,completed,540.0,3540.0
